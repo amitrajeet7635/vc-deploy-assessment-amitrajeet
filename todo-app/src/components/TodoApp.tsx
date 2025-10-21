@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import type { Todo } from '../types/todo';
+import type { Todo, Category } from '../types/todo';
+import { CATEGORIES } from '../types/todo';
 import TodoItem from './TodoItem';
 import './TodoApp.css';
 
 function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<Category>('General');
   
   const appName = import.meta.env.VITE_APP_NAME || 'MiniList';
   const maxTodos = parseInt(import.meta.env.VITE_MAX_TODOS || '100');
@@ -24,6 +26,7 @@ function TodoApp() {
       text: inputValue.trim(),
       completed: false,
       createdAt: new Date(),
+      category: selectedCategory,
     };
 
     setTodos([newTodo, ...todos]);
@@ -34,9 +37,9 @@ function TodoApp() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  const editTodo = (id: string, newText: string) => {
+  const editTodo = (id: string, newText: string, newCategory?: Category) => {
     setTodos(todos.map(todo => 
-      todo.id === id ? { ...todo, text: newText } : todo
+      todo.id === id ? { ...todo, text: newText, ...(newCategory && { category: newCategory }) } : todo
     ));
   };
 
@@ -63,6 +66,17 @@ function TodoApp() {
             className="todo-input"
             maxLength={200}
           />
+          <select 
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value as Category)}
+            className="category-select"
+          >
+            {CATEGORIES.map(category => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
           <button type="submit" className="add-button">
             Add Task
           </button>

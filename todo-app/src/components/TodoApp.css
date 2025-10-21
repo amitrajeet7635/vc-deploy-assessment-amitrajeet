@@ -61,10 +61,12 @@
   display: flex;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .todo-input {
   flex: 1;
+  min-width: 200px;
   padding: 1rem 1.25rem;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
@@ -72,6 +74,25 @@
   font-family: inherit;
   transition: all 0.2s ease;
   background: #f8fafc;
+}
+
+.category-select {
+  padding: 1rem 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+  cursor: pointer;
+  min-width: 130px;
+}
+
+.category-select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .todo-input:focus {
@@ -182,6 +203,11 @@
 
   .todo-form {
     flex-direction: column;
+  }
+
+  .todo-input,
+  .category-select {
+    width: 100%;
   }
 
   .add-button {

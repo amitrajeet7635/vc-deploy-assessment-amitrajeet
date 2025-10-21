@@ -43,8 +43,15 @@
 }
 
 /* Todo Text */
-.todo-text {
+.todo-content {
   flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.todo-text {
   font-size: 1rem;
   color: #1e293b;
   line-height: 1.5;
@@ -58,9 +65,63 @@
   color: #94a3b8;
 }
 
+/* Category Tags */
+.category-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.category-general {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.category-work {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.category-education {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.category-personal {
+  background: #fce7f3;
+  color: #9f1239;
+}
+
+.category-shopping {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.category-health {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+.todo-item.completed .category-tag {
+  opacity: 0.6;
+}
+
 /* Edit Input */
+.todo-edit-container {
+  flex: 1;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .todo-edit-input {
   flex: 1;
+  min-width: 150px;
   padding: 0.5rem 0.75rem;
   border: 2px solid #667eea;
   border-radius: 8px;
@@ -71,6 +132,22 @@
 }
 
 .todo-edit-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.category-select-edit {
+  padding: 0.5rem 0.75rem;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background: white;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.category-select-edit:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
