@@ -8,6 +8,7 @@ function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<Category>('General');
+  const [filterCategory, setFilterCategory] = useState<Category | 'All'>('All');
   
   const appName = import.meta.env.VITE_APP_NAME || 'MiniList';
   const maxTodos = parseInt(import.meta.env.VITE_MAX_TODOS || '100');
@@ -49,6 +50,11 @@ function TodoApp() {
     ));
   };
 
+  // Filter todos based on selected category
+  const filteredTodos = filterCategory === 'All' 
+    ? todos 
+    : todos.filter(todo => todo.category === filterCategory);
+
   return (
     <div className="todo-app">
       <div className="todo-container">
@@ -82,6 +88,24 @@ function TodoApp() {
           </button>
         </form>
 
+        <div className="category-filters">
+          <button
+            className={`filter-btn ${filterCategory === 'All' ? 'active' : ''}`}
+            onClick={() => setFilterCategory('All')}
+          >
+            All ({todos.length})
+          </button>
+          {CATEGORIES.map(category => (
+            <button
+              key={category}
+              className={`filter-btn filter-${category.toLowerCase()} ${filterCategory === category ? 'active' : ''}`}
+              onClick={() => setFilterCategory(category)}
+            >
+              {category} ({todos.filter(t => t.category === category).length})
+            </button>
+          ))}
+        </div>
+
         <div className="todo-stats">
           <span className="stat-item">
             Total: <strong>{todos.length}</strong>
@@ -95,12 +119,12 @@ function TodoApp() {
         </div>
 
         <div className="todo-list">
-          {todos.length === 0 ? (
+          {filteredTodos.length === 0 ? (
             <div className="empty-state">
-              <p>No tasks yet. Add one to get started! ✨</p>
+              <p>{todos.length === 0 ? 'No tasks yet. Add one to get started! ✨' : `No tasks in ${filterCategory} category.`}</p>
             </div>
           ) : (
-            todos.map(todo => (
+            filteredTodos.map(todo => (
               <TodoItem
                 key={todo.id}
                 todo={todo}

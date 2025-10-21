@@ -128,26 +128,88 @@
   transform: translateY(0);
 }
 
+/* Category Filters */
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.filter-btn {
+  padding: 0.375rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.filter-btn.active {
+  background: white;
+  color: #1e293b;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Category-specific filter button styles */
+.filter-general.active {
+  color: #4338ca;
+}
+
+.filter-work.active {
+  color: #1e40af;
+}
+
+.filter-education.active {
+  color: #92400e;
+}
+
+.filter-personal.active {
+  color: #9f1239;
+}
+
+.filter-shopping.active {
+  color: #065f46;
+}
+
+.filter-health.active {
+  color: #9a3412;
+}
+
 /* Stats */
 .todo-stats {
   display: flex;
   justify-content: space-around;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   background: #f8fafc;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 .stat-item {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: #64748b;
+  font-weight: 500;
 }
 
 .stat-item strong {
   color: #1e293b;
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1rem;
   margin-left: 0.25rem;
 }
 
@@ -212,6 +274,16 @@
 
   .add-button {
     width: 100%;
+  }
+
+  .category-filters {
+    gap: 0.25rem;
+    padding: 0.375rem;
+  }
+
+  .filter-btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.625rem;
   }
 
   .todo-stats {
